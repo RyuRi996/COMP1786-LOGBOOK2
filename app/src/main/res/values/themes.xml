@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ImageGallery" parent="Theme.Material3.DayNight.NoActionBar">
+         <item name="colorPrimary">#42ac93</item>
+    </style>
+
+    <style name="Theme.ImageGallery" parent="Base.Theme.ImageGallery" />
+
+    <style name="button" >
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="cornerRadius">25dp</item>
+        <item name="backgroundTint">#39A58B</item>
+        <item name="android:textColor">#fff</item>
+        <item name="fontFamily">@font/avo</item>
+        <item name="android:textSize">15dp</item>
+        <item name="textAllCaps">true</item>
+    </style>
+</resources>
