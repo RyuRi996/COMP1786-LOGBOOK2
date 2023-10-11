@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i =0; i<drawableFiles.length;i++){
             try {
                 getResources().getValue(drawableFiles[i].getInt(null), value, true);
-                String fileName = value.string.toString().substring(13);
+                String fileName = value.string.toString();
                 if (fileName.endsWith("jpg")|| fileName.endsWith("png") || fileName.endsWith("gif")){
                     imageList.add(drawableFiles[i].getInt(null));
                 }
