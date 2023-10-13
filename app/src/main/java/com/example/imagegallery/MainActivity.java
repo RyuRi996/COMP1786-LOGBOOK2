@@ -2,37 +2,18 @@ package com.example.imagegallery;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.content.res.ResourcesCompat;
-
-import android.content.Context;
-import android.content.res.Resources;
-import android.database.Cursor;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.TransitionDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.util.SparseIntArray;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.io.File;
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.List;
-
 import pl.droidsonroids.gif.GifImageView;
 
 public class MainActivity extends AppCompatActivity {
     int i = -1;
-    TextView title;
+    TextView title, imageId;
     GifImageView imageView;
     Button next, previous;
 
@@ -48,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Integer> imageList = getImageDrawable();
         title = findViewById(R.id.titleImage);
         imageView = findViewById(R.id.imageShow);
+        imageId = findViewById(R.id.imageId);
         next = findViewById(R.id.btnNext);
         previous = findViewById(R.id.btnPrevious);
 
@@ -59,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
             }
             imageView.setImageResource(imageList.get(i));
             String titleName = getResources().getResourceName(imageList.get(i)).substring(34);
+            imageId.setVisibility(View.VISIBLE);
             title.setVisibility(View.VISIBLE);
+            imageId.setText("Image ID: "+ i);
             title.setText(titleName);
         });
         previous.setOnClickListener(view -> {
@@ -69,8 +53,11 @@ public class MainActivity extends AppCompatActivity {
                 i--;
             }
             imageView.setImageResource(imageList.get(i));
+            imageView.setTag(imageList.get(i));
             String titleName = getResources().getResourceName(imageList.get(i)).substring(34);
+            imageId.setVisibility(View.VISIBLE);
             title.setVisibility(View.VISIBLE);
+            imageId.setText("Image ID: "+ i);
             title.setText(titleName);
         });
     }
@@ -84,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
             try {
                 getResources().getValue(drawableFiles[i].getInt(null), value, true);
                 String fileName = value.string.toString();
-                if (fileName.endsWith("jpg")|| fileName.endsWith("png") || fileName.endsWith("gif")){
+                if (fileName.endsWith("jpg")||
+                    fileName.endsWith("png")||
+                    fileName.endsWith("gif")){
                     imageList.add(drawableFiles[i].getInt(null));
                 }
             } catch (Exception e){
