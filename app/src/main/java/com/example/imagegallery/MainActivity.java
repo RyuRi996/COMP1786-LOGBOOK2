@@ -21,11 +21,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         buttonImage();
+
     }
 
     private void buttonImage() {
-
         ArrayList<Integer> imageList = getImageDrawable();
         title = findViewById(R.id.titleImage);
         imageView = findViewById(R.id.imageShow);
